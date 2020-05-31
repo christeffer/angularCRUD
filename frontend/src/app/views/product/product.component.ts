@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HeaderService } from '../../services/header.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private router: Router, private headerService: HeaderService) {
+    headerService.headerData = {
+      title: 'Cadastro de Produtos',
+      icon: 'storefront',
+      routeUrl: '/products',
+    };
   }
 
+  ngOnInit(): void {}
+
+  goToProductCreate(): void {
+    this.router.navigate(['products/create']);
+  }
 }
